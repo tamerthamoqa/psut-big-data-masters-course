@@ -1,0 +1,3 @@
+Edited spark worker resources to 2 cpu cores and 2048 megabytes (2 gigabytes) each in docker-compose.yml file.
+
+All assignments were done on spark 3.0.0

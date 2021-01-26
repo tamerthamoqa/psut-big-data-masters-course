@@ -1,0 +1,22 @@
+import sys
+import subprocess
+
+def package_install(package):
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
+    return True
+
+def package_uninstall(package):
+    subprocess.check_call([sys.executable, '-m', 'pip', 'uninstall', '-y', package])
+    return True
+
+def publish_packages(*package):
+    package = list(package)
+    packages_rdd = sc.parallelize(package)
+    install_rdd = packages_rdd.map(lambda pack: package_install(pack))
+    return install_rdd.collect()
+
+def unpublish_packages(*package):
+    package = list(package)
+    packages_rdd = sc.parallelize(package)
+    install_rdd = packages_rdd.map(lambda pack: package_uninstall(pack))
+    return install_rdd.collect()
